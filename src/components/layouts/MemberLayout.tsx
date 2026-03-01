@@ -1,6 +1,6 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { LogOut, ShoppingBag, Users, History, Wallet, Home, Crown } from "lucide-react";
+import { LogOut, ShoppingBag, Users, History, Wallet, Home, Crown, CreditCard } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const membershipColors: Record<string, string> = {
@@ -22,6 +22,7 @@ const MemberLayout = () => {
     { icon: Users, label: "Referral", path: "/dashboard/referral" },
     { icon: History, label: "Riwayat", path: "/dashboard/history" },
     { icon: Wallet, label: "Withdraw", path: "/dashboard/withdraw" },
+    { icon: CreditCard, label: "Bayar", path: "/dashboard/membership" },
   ];
 
   return (
