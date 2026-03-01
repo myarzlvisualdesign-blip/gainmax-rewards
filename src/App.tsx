@@ -17,6 +17,8 @@ import AffiliateMarketplace from "./pages/dashboard/AffiliateMarketplace";
 import ReferralPage from "./pages/dashboard/ReferralPage";
 import HistoryPage from "./pages/dashboard/HistoryPage";
 import WithdrawPage from "./pages/dashboard/WithdrawPage";
+import MembershipPage from "./pages/dashboard/MembershipPage";
+import TopupPage from "./pages/dashboard/TopupPage";
 
 import StaffDashboard from "./pages/StaffDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -46,6 +48,8 @@ const App = () => (
               <Route path="referral" element={<ReferralPage />} />
               <Route path="history" element={<HistoryPage />} />
               <Route path="withdraw" element={<WithdrawPage />} />
+              <Route path="membership" element={<MembershipPage />} />
+              <Route path="topup" element={<TopupPage />} />
             </Route>
 
             {/* Staff dashboard */}
