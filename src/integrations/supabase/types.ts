@@ -14,6 +14,75 @@ export type Database = {
   }
   public: {
     Tables: {
+      payments: {
+        Row: {
+          amount: number
+          checkout_url: string | null
+          created_at: string
+          expired_time: number | null
+          fee: number
+          id: string
+          membership_level:
+            | Database["public"]["Enums"]["membership_level"]
+            | null
+          merchant_ref: string
+          paid_at: string | null
+          pay_code: string | null
+          payment_method: string | null
+          payment_type: Database["public"]["Enums"]["payment_type"]
+          payment_url: string | null
+          status: Database["public"]["Enums"]["payment_status"]
+          total_amount: number
+          tripay_reference: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount?: number
+          checkout_url?: string | null
+          created_at?: string
+          expired_time?: number | null
+          fee?: number
+          id?: string
+          membership_level?:
+            | Database["public"]["Enums"]["membership_level"]
+            | null
+          merchant_ref: string
+          paid_at?: string | null
+          pay_code?: string | null
+          payment_method?: string | null
+          payment_type: Database["public"]["Enums"]["payment_type"]
+          payment_url?: string | null
+          status?: Database["public"]["Enums"]["payment_status"]
+          total_amount?: number
+          tripay_reference?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          checkout_url?: string | null
+          created_at?: string
+          expired_time?: number | null
+          fee?: number
+          id?: string
+          membership_level?:
+            | Database["public"]["Enums"]["membership_level"]
+            | null
+          merchant_ref?: string
+          paid_at?: string | null
+          pay_code?: string | null
+          payment_method?: string | null
+          payment_type?: Database["public"]["Enums"]["payment_type"]
+          payment_url?: string | null
+          status?: Database["public"]["Enums"]["payment_status"]
+          total_amount?: number
+          tripay_reference?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       products: {
         Row: {
           affiliate_url: string | null
@@ -245,6 +314,8 @@ export type Database = {
       affiliate_status: "pending" | "valid" | "rejected" | "paid"
       app_role: "admin" | "staff" | "member"
       membership_level: "none" | "silver" | "gold" | "diamond"
+      payment_status: "UNPAID" | "PAID" | "EXPIRED" | "FAILED" | "REFUND"
+      payment_type: "membership" | "topup"
       withdrawal_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
@@ -376,6 +447,8 @@ export const Constants = {
       affiliate_status: ["pending", "valid", "rejected", "paid"],
       app_role: ["admin", "staff", "member"],
       membership_level: ["none", "silver", "gold", "diamond"],
+      payment_status: ["UNPAID", "PAID", "EXPIRED", "FAILED", "REFUND"],
+      payment_type: ["membership", "topup"],
       withdrawal_status: ["pending", "approved", "rejected"],
     },
   },
