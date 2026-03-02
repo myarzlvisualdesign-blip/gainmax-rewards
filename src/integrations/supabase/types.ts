@@ -14,70 +14,133 @@ export type Database = {
   }
   public: {
     Tables: {
+      membership_packages: {
+        Row: {
+          commission_percentage: number
+          created_at: string
+          features: Json | null
+          id: string
+          is_active: boolean
+          level: Database["public"]["Enums"]["membership_level"]
+          price: number
+          referral_commission: number
+          updated_at: string
+        }
+        Insert: {
+          commission_percentage?: number
+          created_at?: string
+          features?: Json | null
+          id?: string
+          is_active?: boolean
+          level: Database["public"]["Enums"]["membership_level"]
+          price?: number
+          referral_commission?: number
+          updated_at?: string
+        }
+        Update: {
+          commission_percentage?: number
+          created_at?: string
+          features?: Json | null
+          id?: string
+          is_active?: boolean
+          level?: Database["public"]["Enums"]["membership_level"]
+          price?: number
+          referral_commission?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          is_read: boolean
+          message: string | null
+          reference_id: string | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string | null
+          reference_id?: string | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string | null
+          reference_id?: string | null
+          title?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       payments: {
         Row: {
+          admin_notes: string | null
           amount: number
-          checkout_url: string | null
+          approved_at: string | null
+          approved_by: string | null
           created_at: string
-          expired_time: number | null
-          fee: number
           id: string
           membership_level:
             | Database["public"]["Enums"]["membership_level"]
             | null
-          merchant_ref: string
+          merchant_ref: string | null
           paid_at: string | null
-          pay_code: string | null
+          payment_channel: string | null
           payment_method: string | null
           payment_type: Database["public"]["Enums"]["payment_type"]
-          payment_url: string | null
+          proof_image_url: string | null
           status: Database["public"]["Enums"]["payment_status"]
-          total_amount: number
-          tripay_reference: string | null
           updated_at: string
           user_id: string
         }
         Insert: {
+          admin_notes?: string | null
           amount?: number
-          checkout_url?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
           created_at?: string
-          expired_time?: number | null
-          fee?: number
           id?: string
           membership_level?:
             | Database["public"]["Enums"]["membership_level"]
             | null
-          merchant_ref: string
+          merchant_ref?: string | null
           paid_at?: string | null
-          pay_code?: string | null
+          payment_channel?: string | null
           payment_method?: string | null
           payment_type: Database["public"]["Enums"]["payment_type"]
-          payment_url?: string | null
+          proof_image_url?: string | null
           status?: Database["public"]["Enums"]["payment_status"]
-          total_amount?: number
-          tripay_reference?: string | null
           updated_at?: string
           user_id: string
         }
         Update: {
+          admin_notes?: string | null
           amount?: number
-          checkout_url?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
           created_at?: string
-          expired_time?: number | null
-          fee?: number
           id?: string
           membership_level?:
             | Database["public"]["Enums"]["membership_level"]
             | null
-          merchant_ref?: string
+          merchant_ref?: string | null
           paid_at?: string | null
-          pay_code?: string | null
+          payment_channel?: string | null
           payment_method?: string | null
           payment_type?: Database["public"]["Enums"]["payment_type"]
-          payment_url?: string | null
+          proof_image_url?: string | null
           status?: Database["public"]["Enums"]["payment_status"]
-          total_amount?: number
-          tripay_reference?: string | null
           updated_at?: string
           user_id?: string
         }
@@ -133,6 +196,7 @@ export type Database = {
           saldo_bisa_ditarik: number
           saldo_referral: number
           saldo_terkunci: number
+          shopee_affiliate_url: string | null
           status: string
           updated_at: string
           user_id: string
@@ -150,6 +214,7 @@ export type Database = {
           saldo_bisa_ditarik?: number
           saldo_referral?: number
           saldo_terkunci?: number
+          shopee_affiliate_url?: string | null
           status?: string
           updated_at?: string
           user_id: string
@@ -167,6 +232,7 @@ export type Database = {
           saldo_bisa_ditarik?: number
           saldo_referral?: number
           saldo_terkunci?: number
+          shopee_affiliate_url?: string | null
           status?: string
           updated_at?: string
           user_id?: string
@@ -179,6 +245,7 @@ export type Database = {
           created_at: string
           id: string
           member_id: string
+          payment_id: string | null
           percentage: number
           staff_id: string
           status: string
@@ -188,6 +255,7 @@ export type Database = {
           created_at?: string
           id?: string
           member_id: string
+          payment_id?: string | null
           percentage?: number
           staff_id: string
           status?: string
@@ -197,9 +265,39 @@ export type Database = {
           created_at?: string
           id?: string
           member_id?: string
+          payment_id?: string | null
           percentage?: number
           staff_id?: string
           status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "referral_commissions_payment_id_fkey"
+            columns: ["payment_id"]
+            isOneToOne: false
+            referencedRelation: "payments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      site_settings: {
+        Row: {
+          id: string
+          key: string
+          updated_at: string
+          value: string | null
+        }
+        Insert: {
+          id?: string
+          key: string
+          updated_at?: string
+          value?: string | null
+        }
+        Update: {
+          id?: string
+          key?: string
+          updated_at?: string
+          value?: string | null
         }
         Relationships: []
       }
@@ -247,6 +345,45 @@ export type Database = {
           },
         ]
       }
+      user_products: {
+        Row: {
+          buy_link: string | null
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          shopee_link: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          buy_link?: string | null
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          shopee_link?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          buy_link?: string | null
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          shopee_link?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
@@ -267,7 +404,10 @@ export type Database = {
       }
       withdrawals: {
         Row: {
+          account_holder: string | null
+          account_number: string | null
           amount: number
+          bank_name: string | null
           created_at: string
           id: string
           status: Database["public"]["Enums"]["withdrawal_status"]
@@ -275,7 +415,10 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          account_holder?: string | null
+          account_number?: string | null
           amount?: number
+          bank_name?: string | null
           created_at?: string
           id?: string
           status?: Database["public"]["Enums"]["withdrawal_status"]
@@ -283,7 +426,10 @@ export type Database = {
           user_id: string
         }
         Update: {
+          account_holder?: string | null
+          account_number?: string | null
           amount?: number
+          bank_name?: string | null
           created_at?: string
           id?: string
           status?: Database["public"]["Enums"]["withdrawal_status"]
@@ -314,9 +460,9 @@ export type Database = {
       affiliate_status: "pending" | "valid" | "rejected" | "paid"
       app_role: "admin" | "staff" | "member"
       membership_level: "none" | "silver" | "gold" | "diamond"
-      payment_status: "UNPAID" | "PAID" | "EXPIRED" | "FAILED" | "REFUND"
+      payment_status: "PENDING" | "BERHASIL" | "DITOLAK"
       payment_type: "membership" | "topup"
-      withdrawal_status: "pending" | "approved" | "rejected"
+      withdrawal_status: "pending" | "berhasil" | "ditolak"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -447,9 +593,9 @@ export const Constants = {
       affiliate_status: ["pending", "valid", "rejected", "paid"],
       app_role: ["admin", "staff", "member"],
       membership_level: ["none", "silver", "gold", "diamond"],
-      payment_status: ["UNPAID", "PAID", "EXPIRED", "FAILED", "REFUND"],
+      payment_status: ["PENDING", "BERHASIL", "DITOLAK"],
       payment_type: ["membership", "topup"],
-      withdrawal_status: ["pending", "approved", "rejected"],
+      withdrawal_status: ["pending", "berhasil", "ditolak"],
     },
   },
 } as const

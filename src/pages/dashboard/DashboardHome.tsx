@@ -1,11 +1,13 @@
-import { ShoppingBag, Users, History, Wallet } from "lucide-react";
+import { ShoppingBag, Users, History, Wallet, Crown, Package } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const menuItems = [
-  { icon: ShoppingBag, label: "Affiliate", desc: "Belanja & dapat reward", path: "/dashboard/affiliate", color: "bg-primary/10 text-primary" },
+  { icon: Crown, label: "Membership", desc: "Berlangganan paket", path: "/dashboard/membership", color: "bg-primary/10 text-primary" },
+  { icon: Package, label: "Produk", desc: "Upload produk Anda", path: "/dashboard/products", color: "bg-orange-100 text-orange-600 dark:bg-orange-900 dark:text-orange-300" },
+  { icon: ShoppingBag, label: "Affiliate", desc: "Belanja & dapat reward", path: "/dashboard/affiliate", color: "bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300" },
   { icon: Users, label: "Referral", desc: "Ajak teman & dapat komisi", path: "/dashboard/referral", color: "bg-gainmax-gold/10 text-gainmax-gold" },
-  { icon: History, label: "Riwayat", desc: "Lihat semua transaksi", path: "/dashboard/history", color: "bg-blue-100 text-blue-600" },
-  { icon: Wallet, label: "Withdraw", desc: "Cairkan saldo Anda", path: "/dashboard/withdraw", color: "bg-green-100 text-green-600" },
+  { icon: History, label: "Riwayat", desc: "Lihat semua transaksi", path: "/dashboard/history", color: "bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300" },
+  { icon: Wallet, label: "Withdraw", desc: "Cairkan saldo Anda", path: "/dashboard/withdraw", color: "bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300" },
 ];
 
 const DashboardHome = () => {
