@@ -18,7 +18,7 @@ import ReferralPage from "./pages/dashboard/ReferralPage";
 import HistoryPage from "./pages/dashboard/HistoryPage";
 import WithdrawPage from "./pages/dashboard/WithdrawPage";
 import MembershipPage from "./pages/dashboard/MembershipPage";
-import TopupPage from "./pages/dashboard/TopupPage";
+import UserProductsPage from "./pages/dashboard/UserProductsPage";
 
 import StaffDashboard from "./pages/StaffDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -39,7 +39,7 @@ const App = () => (
 
             {/* Member dashboard */}
             <Route path="/dashboard" element={
-              <ProtectedRoute allowedRoles={["member"]}>
+              <ProtectedRoute allowedRoles={["member", "staff"]}>
                 <MemberLayout />
               </ProtectedRoute>
             }>
@@ -49,7 +49,7 @@ const App = () => (
               <Route path="history" element={<HistoryPage />} />
               <Route path="withdraw" element={<WithdrawPage />} />
               <Route path="membership" element={<MembershipPage />} />
-              <Route path="topup" element={<TopupPage />} />
+              <Route path="products" element={<UserProductsPage />} />
             </Route>
 
             {/* Staff dashboard */}

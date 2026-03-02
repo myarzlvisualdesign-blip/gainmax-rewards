@@ -1,7 +1,7 @@
 project_id = "aeahrysywfmhiwxejovs"
 
-[functions.tripay-create-transaction]
+[functions.approve-payment]
 verify_jwt = false
 
-[functions.tripay-callback]
+[functions.approve-withdrawal]
 verify_jwt = false
